@@ -1,0 +1,41 @@
+---
+title: "Velino Motors"
+slug: "velino-motors"
+summary: "A premium single-page site for a UAE car dealership, built to turn browsing into a WhatsApp conversation."
+coverImage: "/images/velino-motors-cover.jpg"
+status: "live"
+order: 3
+role: "Solo developer, client project — scope, design, build, and deploy"
+stack:
+  frontend: ["HTML", "CSS", "JavaScript"]
+  backend: []
+  ai: []
+  infra: ["Netlify", "GitHub"]
+links:
+  live: "https://velino-motors.netlify.app"
+  repo: null
+---
+
+## The problem
+
+Velino Motors sells five compact, luxury-styled electric vehicles — scaled-down lookalikes of cars like the Porsche 911 and the Mercedes G-Class, aimed at gated communities and resorts rather than public roads. The client, a UAE-based dealership owner, had already tried building the site herself in a vibe-coding tool. The result technically worked, but it pulled in a database, admin dashboard, and other backend scaffolding for a catalog that would only ever have five fixed products. It felt heavy, generic, and not premium enough for the brand.
+
+The actual requirement was narrow: show five products beautifully, and let a visitor go from "interested" to a WhatsApp conversation with the dealership in one click. No checkout, no accounts, no inventory management — she was explicit that she wanted it "technically extremely simple," with all the effort spent on how it looked and felt.
+
+## Architecture
+
+The first instinct — Next.js, Postgres, Twilio's WhatsApp API, an auth-gated admin panel — was scoped out deliberately once the actual requirements were clear. Every visitor sees the same five products; nothing here is per-request or needs a server. Twilio's WhatsApp send would also have required a lead-capture form just to have something to send, adding friction the client didn't want.
+
+Instead, the whole site is static HTML/CSS/JavaScript with zero backend. Each product links out with a `wa.me` URL, pre-filled with a message naming that specific car — the visitor's own WhatsApp client sends it, so there's nothing to host, log, or maintain server-side:
+
+```html
+<a href="https://wa.me/971552426455?text=Hi%2C%20I%27m%20interested%20in%20the%20Porsche%20911">
+  Enquire on WhatsApp
+</a>
+```
+
+With the tech deliberately trivial, effort went into the parts that actually mattered: a two-column "editorial split" hero, alternating zigzag model rows instead of a uniform card grid, a header that starts transparent over the hero photo and solidifies with a shrink animation on scroll, staggered fade-up entrance animations, and a product-detail modal with a full photo gallery and spec table per car. Layout direction was explored as mockups first — three directions sketched out, one picked and built — rather than iterating blind in code.
+
+## Outcome
+
+The site is live on Netlify with a GitHub-backed deploy pipeline, and every one of the five cars' WhatsApp enquiry flows was verified end-to-end in a real browser: correct number, correct pre-filled per-car message, every time. What shipped matches the brief exactly — five products presented well, one clear path from interest to conversation, nothing extra to break or maintain. The client retained full creative sign-off on the visual direction throughout, and the simplification from a database-backed app down to a static site cut hosting cost and maintenance surface to effectively zero.
