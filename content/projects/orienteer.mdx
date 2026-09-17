@@ -5,7 +5,7 @@ summary: "Multi-tenant virtual campus tour SaaS, built with a genuine WCAG 2.1 A
 coverImage: "/images/orienteer-cover.jpg"
 status: "live"
 order: 2
-role: "Founder & Lead Engineer — architecture, majority of the build, deploy, and accessibility audit"
+role: "Founder & Lead Engineer: architecture, majority of the build, deploy, and accessibility audit"
 stack:
   frontend: ["Vanilla JavaScript (ES Modules)", "Pannellum", "Vite"]
   backend: ["Firebase (Firestore, Auth, Storage)"]
@@ -18,14 +18,14 @@ links:
 
 ## The problem
 
-Prospective students choose a school partly on how the campus feels, but an in-person visit isn't always possible — distance, cost, and scheduling all get in the way. Most virtual tour tech available to universities is either a flat photo gallery or an expensive enterprise product nobody self-serves into. Orienteer started as a single 360° tour of DePaul's Student Center, built with firsthand knowledge of what a tour actually needs to answer — the founder is a DePaul senior and former Orientation Leader — then rebuilt from the ground up as a general product any institution could sign up for and publish their own tour on, without ever touching code.
+Prospective students choose a school partly on how the campus feels, but an in-person visit isn't always possible: distance, cost, and scheduling all get in the way. Most virtual tour tech available to universities is either a flat photo gallery or an expensive enterprise product nobody self-serves into. Orienteer started as a single 360° tour of DePaul's Student Center, built with firsthand knowledge of what a tour actually needs to answer (the founder is a DePaul senior and former Orientation Leader), then rebuilt from the ground up as a general product any institution could sign up for and publish their own tour on, without ever touching code.
 
 ## Architecture
 
-The engine is vanilla JavaScript (ES modules) with Pannellum for 360° panorama rendering, Firebase (Firestore, Auth, Storage) as the backend, and Vite for the build. Data is modeled multi-tenant from the schema up: `institutions/{id}/tours/{tourId}/scenes/{sceneId}/hotspots`, so one account can run several independent tours — different buildings, different programs — each with its own branding, hotspot set, and published state. An in-browser hotspot placer converts a click on the raw panorama into pitch/yaw coordinates directly, so adding a hotspot never requires hand-computing spherical coordinates. Five hotspot types are supported, including a "tour guide" mode that plays narrated voiceover audio, and a guided-sequence mode lets an admin define a fixed path through campus with an "Explore Freely" exit at the end — built for admissions events walking a set route.
+The engine is vanilla JavaScript (ES modules) with Pannellum for 360° panorama rendering, Firebase (Firestore, Auth, Storage) as the backend, and Vite for the build. Data is modeled multi-tenant from the schema up: `institutions/{id}/tours/{tourId}/scenes/{sceneId}/hotspots`, so one account can run several independent tours (different buildings, different programs), each with its own branding, hotspot set, and published state. An in-browser hotspot placer converts a click on the raw panorama into pitch/yaw coordinates directly, so adding a hotspot never requires hand-computing spherical coordinates. Five hotspot types are supported, including a "tour guide" mode that plays narrated voiceover audio, and a guided-sequence mode lets an admin define a fixed path through campus with an "Explore Freely" exit at the end, built for admissions events walking a set route.
 
 Security was treated as part of the architecture, not a pass at the end: Firestore and Storage rules are scoped to real ownership checks (not just hidden in the UI), Firebase App Check with reCAPTCHA v3 blocks scripted abuse, and unpublished tours are gated server-side so a non-owner can't view a tour before it's ready regardless of what the client sends.
 
 ## Outcome
 
-Orienteer is live at orienteer.io with a real DePaul tour behind it, demoed in June 2026 to a positive reception. It also carries a genuine WCAG 2.1 AA accessibility pass — every hotspot is keyboard-operable with a visible focus state (the original build was mouse-only), every panel and modal carries the correct ARIA roles and live regions, and a real contrast audit found and fixed 7 failing color combinations. This wasn't built for a compliance checkbox: the founder is blind and uses a screen reader, so Orienteer's admin dashboard is a tool he uses to run his own product, not just ship for others.
+Orienteer is live at orienteer.io with a real DePaul tour behind it, demoed in June 2026 to a positive reception. It also carries a genuine WCAG 2.1 AA accessibility pass: every hotspot is keyboard-operable with a visible focus state (the original build was mouse-only), every panel and modal carries the correct ARIA roles and live regions, and a real contrast audit found and fixed 7 failing color combinations. This wasn't built for a compliance checkbox: the founder is blind and uses a screen reader, so Orienteer's admin dashboard is a tool he uses to run his own product, not just ship for others.

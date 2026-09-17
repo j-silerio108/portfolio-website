@@ -11,7 +11,7 @@ export default function Home() {
           Selected work
         </h1>
         <p className="max-w-xl text-zinc-600 dark:text-zinc-400">
-          Case studies from real, shipped projects — architecture, stack, and
+          Case studies from real, shipped projects: architecture, stack, and
           outcomes.
         </p>
       </header>

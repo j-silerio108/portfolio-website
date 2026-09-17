@@ -6,12 +6,12 @@ export default function AboutPage() {
       </h1>
       <p className="text-zinc-600 dark:text-zinc-400">
         I&apos;m Jose Silerio, a solo developer building full-stack web
-        products end to end — from spec to deploy.
+        products end to end, from spec to deploy.
       </p>
       <p className="text-zinc-600 dark:text-zinc-400">
         Accessibility isn&apos;t an afterthought in my work: I&apos;m blind
         and use a screen reader daily, so the sites and apps I build are held
-        to the same standard I rely on myself — including this one.
+        to the same standard I rely on myself, including this one.
       </p>
     </article>
   );
