@@ -9,9 +9,9 @@ export default function AboutPage() {
         products end to end, from spec to deploy.
       </p>
       <p className="text-zinc-600 dark:text-zinc-400">
-        Accessibility isn&apos;t an afterthought in my work: I&apos;m blind
-        and use a screen reader daily, so the sites and apps I build are held
-        to the same standard I rely on myself, including this one.
+        Accessibility isn&apos;t an afterthought in my work: I build every
+        site and app to meet WCAG 2.1 AA as a baseline, not a pass added at
+        the end, including this one.
       </p>
     </article>
   );
