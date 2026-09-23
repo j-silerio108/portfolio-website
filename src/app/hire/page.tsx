@@ -20,7 +20,7 @@ const TIERS: Tier[] = [
       "Custom design, built to match your brand",
       "Contact form, WhatsApp link, or booking CTA",
       "Mobile responsive",
-      "Deployed and live within about a week",
+      "Built and live within 3 days",
     ],
     example: { label: "See Velino Motors", href: "/projects/velino-motors" },
   },
