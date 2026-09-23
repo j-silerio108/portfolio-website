@@ -37,12 +37,20 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             <Link href="/" className="font-semibold text-zinc-900 dark:text-zinc-50">
               Jose Silerio
             </Link>
-            <Link
-              href="/about"
-              className="text-sm font-medium text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50"
-            >
-              About
-            </Link>
+            <div className="flex items-center gap-6">
+              <Link
+                href="/about"
+                className="text-sm font-medium text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50"
+              >
+                About
+              </Link>
+              <Link
+                href="/hire"
+                className="text-sm font-medium text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50"
+              >
+                Hire me
+              </Link>
+            </div>
           </nav>
         </header>
 
