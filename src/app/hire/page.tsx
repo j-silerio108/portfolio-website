@@ -109,6 +109,40 @@ export default function HirePage() {
 
       <section className="flex flex-col gap-3 rounded-xl border border-black/10 bg-white p-6 dark:border-white/15 dark:bg-zinc-900">
         <h2 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50">
+          Here&apos;s why you need a real developer, not an AI subscription
+        </h2>
+        <p className="text-sm text-zinc-600 dark:text-zinc-400">
+          AI website and app builders (Wix, Framer, Durable, Lovable,
+          Bolt.new) are real options, and they&apos;re cheap: $10 to $30 a
+          month, sometimes less. If your project is genuinely simple, try one
+          first.
+        </p>
+        <p className="text-sm text-zinc-600 dark:text-zinc-400">
+          But a subscription only gives you a tool. It doesn&apos;t know when
+          to say no to a database you don&apos;t need, and it can&apos;t tell
+          you the design doesn&apos;t match your brand.{" "}
+          <Link
+            href="/projects/velino-motors"
+            className="underline underline-offset-2"
+          >
+            Velino Motors
+          </Link>{" "}
+          tried building her own site in a vibe-coding tool before coming to
+          me. It technically worked, but it pulled in a database, an admin
+          dashboard, and other backend scaffolding for a catalog of five
+          fixed products. It felt heavy and generic, not premium enough for
+          the brand she was building.
+        </p>
+        <p className="text-sm text-zinc-600 dark:text-zinc-400">
+          What you&apos;re actually paying for is judgment: the right scope
+          for what you need, a design that fits your brand, and a finished
+          product that&apos;s tested and deployed, not a tool you have to
+          keep operating yourself.
+        </p>
+      </section>
+
+      <section className="flex flex-col gap-3 rounded-xl border border-black/10 bg-white p-6 dark:border-white/15 dark:bg-zinc-900">
+        <h2 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50">
           How it works
         </h2>
         <ol className="flex flex-col gap-2 text-sm text-zinc-600 dark:text-zinc-400">
