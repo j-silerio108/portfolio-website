@@ -1,55 +1,5 @@
 import Link from "next/link";
-
-const EMAIL = "josesilerio108@gmail.com";
-
-interface Tier {
-  name: string;
-  price: string;
-  description: string;
-  includes: string[];
-  example?: { label: string; href: string };
-}
-
-const TIERS: Tier[] = [
-  {
-    name: "Business site",
-    price: "From $250",
-    description:
-      "A single-page or few-page site for a business that needs a clean online presence and a clear way for visitors to reach out, no backend required.",
-    includes: [
-      "Custom design, built to match your brand",
-      "Contact form, WhatsApp link, or booking CTA",
-      "Mobile responsive",
-      "Built and live within 3 days",
-    ],
-    example: { label: "See Velino Motors", href: "/projects/velino-motors" },
-  },
-  {
-    name: "Online store",
-    price: "From $900",
-    description:
-      "A real e-commerce site with hosted checkout, product catalog, and order handling wired up end to end so payments actually work.",
-    includes: [
-      "Product catalog and cart",
-      "Stripe checkout integration",
-      "Order fulfillment workflow",
-      "Mobile responsive",
-    ],
-  },
-  {
-    name: "Custom web app",
-    price: "From $2,000",
-    description:
-      "A full application built from a spec: accounts, an admin panel, a database, whatever the product needs. Scoped and quoted after a short call.",
-    includes: [
-      "Authentication and user accounts",
-      "Admin panel / CRUD as needed",
-      "Database design",
-      "Testing and deployment",
-    ],
-    example: { label: "See Orienteer", href: "/projects/orienteer" },
-  },
-];
+import { ACCENTS, EMAIL, TIERS } from "@/lib/hire-tiers";
 
 export default function HirePage() {
   return (
@@ -68,43 +18,65 @@ export default function HirePage() {
       </header>
 
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
-        {TIERS.map((tier) => (
-          <div
-            key={tier.name}
-            className="flex flex-col gap-4 rounded-xl border border-black/10 bg-white p-5 dark:border-white/15 dark:bg-zinc-900"
-          >
-            <div className="flex flex-col gap-1">
-              <h2 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50">
-                {tier.name}
-              </h2>
-              <p className="text-2xl font-bold text-zinc-900 dark:text-zinc-50">
-                {tier.price}
+        {TIERS.map((tier) => {
+          const accent = ACCENTS[tier.accent];
+          return (
+            <Link
+              key={tier.slug}
+              href={`/hire/${tier.slug}`}
+              className={`flex flex-col gap-4 rounded-xl bg-white p-5 transition-transform hover:scale-[1.01] dark:bg-zinc-900 ${accent.card}`}
+            >
+              <div className="flex flex-col gap-1">
+                <h2 className={`text-lg font-semibold ${accent.text}`}>
+                  {tier.name}
+                </h2>
+                {!tier.subTiers && (
+                  <p className="text-2xl font-bold text-zinc-900 dark:text-zinc-50">
+                    {tier.price}
+                  </p>
+                )}
+              </div>
+
+              <p className="text-sm text-zinc-600 dark:text-zinc-400">
+                {tier.description}
               </p>
-            </div>
 
-            <p className="text-sm text-zinc-600 dark:text-zinc-400">
-              {tier.description}
-            </p>
+              {tier.subTiers && (
+                <div className="flex flex-col divide-y divide-black/5 dark:divide-white/10">
+                  {tier.subTiers.map((sub) => (
+                    <div key={sub.name} className="flex flex-col gap-0.5 py-2.5 first:pt-0 last:pb-0">
+                      <div className="flex items-baseline justify-between gap-2">
+                        <span className="text-sm font-semibold text-zinc-900 dark:text-zinc-50">
+                          {sub.name}
+                        </span>
+                        <span className="text-sm font-semibold text-zinc-900 dark:text-zinc-50">
+                          {sub.price}
+                        </span>
+                      </div>
+                      <p className="text-sm text-zinc-600 dark:text-zinc-400">
+                        {sub.blurb}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              )}
 
-            <ul className="flex flex-col gap-1.5 text-sm text-zinc-600 dark:text-zinc-400">
-              {tier.includes.map((item) => (
-                <li key={item} className="flex gap-2">
-                  <span aria-hidden="true">•</span>
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
+              <ul className="flex flex-col gap-1.5 text-sm text-zinc-600 dark:text-zinc-400">
+                {tier.includes.map((item) => (
+                  <li key={item} className="flex gap-2">
+                    <span aria-hidden="true">•</span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
 
-            {tier.example && (
-              <Link
-                href={tier.example.href}
-                className="mt-auto text-sm font-medium underline underline-offset-2"
-              >
-                {tier.example.label}
-              </Link>
-            )}
-          </div>
-        ))}
+              <span className={`mt-auto text-sm font-medium ${accent.text}`}>
+                {tier.subTiers ? "View full packages" : "See full details"}
+                {" →"}
+              </span>
+            </Link>
+          );
+        })}
       </div>
 
       <section className="flex flex-col gap-3 rounded-xl border border-black/10 bg-white p-6 dark:border-white/15 dark:bg-zinc-900">

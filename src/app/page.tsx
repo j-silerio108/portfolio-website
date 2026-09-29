@@ -23,8 +23,8 @@ export default function Home() {
             Available for freelance work
           </h2>
           <p className="text-sm text-zinc-600 dark:text-zinc-400">
-            Business sites from $250, online stores from $900, custom web
-            apps from $2,000.
+            Business sites from $250, online stores from $1,500, custom web
+            apps scoped after a quick call.
           </p>
         </div>
         <Link
